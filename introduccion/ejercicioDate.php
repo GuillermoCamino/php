@@ -1,3 +1,4 @@
+<h1> ejercicio fechas</h1>
 <?php
     //echo date("l j \h\o\l\a Y");
 
