@@ -5,3 +5,4 @@
     <input type="text" name="edad"><br><br>
     <input type="submit" value="enviar">
 </form>
+<p> <a href="index.html">Volver a la pagina principal </p>

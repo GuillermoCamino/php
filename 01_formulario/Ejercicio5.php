@@ -8,17 +8,16 @@
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-    <h1>Ejercicio 4</h1>
+    <h1>Ejercicio 5</h1>
 
-    <p>Crear un formulario que reciba una frase y un número del 1 al 6. Habrá que mostrar la frase
-    en un encabezado de dicho número </p>
+    <p>Formulario que reciba dos números. Devolver el resultado de elevar el primero al segundo.  </p>
 
     <div>
-        <form action="ejercicio4_respuesta.php" method="get">
-            <label>frase</label><br>           
-            <input type="text" name="frase"><br><br>
-            <label>numero</label><br>
-            <input type="text" name="numero"><br><br>
+        <form action="ejercicio5_respuesta.php" method="get">
+            <label>base</label><br>           
+            <input type="text" name="numero1"><br><br>
+            <label>exponente</label><br>
+            <input type="text" name="numero2"><br><br>
             <input type="submit" value="Enviar">
         </form>
     </div> 
