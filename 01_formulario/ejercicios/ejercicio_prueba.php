@@ -16,19 +16,30 @@
         <form action="ejercicio_prueba.php" method="post">
             <label>numero</label><br>           
             <input type="text" name="numero1"><br><br>
+            <input type="hidden" name="f" value="f_numero">
             <input type="submit" value="Enviar">
         </form>
     </div> 
 
-    <?php
-        if($_SERVER["REQUEST_METHOD"]== "POST"){
-            echo $_POST["numero1"];
-        }
 
-        $_SERVER[
-            
-        ]
+    <div>
+        <form action="ejercicio_prueba.php" method="post">
+            <label>nombre</label><br>           
+            <input type="text" name="nombre"><br><br>
+            <input type="hidden" name="f" value="f_nombre">
+            <input type="submit" value="Enviar">
+        </form>
+    </div> 
+    <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if ($_POST["f"]=="f_numero"){
+                echo "<p>Estoy en f_numero</p>";
+            }else if ($_POST["f"]=="f_nombre"){
+                echo "<p>Estoy en f_nombre</p>";
+            }
+        }
     ?>
+
     <p> <a href="index.html">Volver a la pagina principal </p>
 </body>
 </html>
