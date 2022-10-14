@@ -142,26 +142,24 @@
     <div>
     <form action="indexbueno.php#ej5" method="post">
     <label>base</label><br>           
-            <input type="text" name="numero1"><br><br>
+            <input type="text" name="base"><br><br>
             <label>exponente</label><br>
-            <input type="text" name="numero2"><br><br>
+            <input type="text" name="expo"><br><br>
             <input type="hidden" name="f" value="ej5">
             <input type="submit" value="Enviar">
         </form>
         <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+              if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($_POST["f"] == "ej5") {
-                    $base = $_POST["numero1"];
-                    $expo = $_POST["numero2"];
-
-                    $resultado=1;
-
-                    for($i=1;$i<=$expo;$i++){
-                     $resultado=$resultado*$base;
-                 
-                     }
-                     echo "la  potencia es [$base]^[$expo]=[$resultado]";
-                 
+                    require 'funciones/potencia.php';
+                    $base = $_POST["base"];
+                    $expo = $_POST["expo"];
+                    $resultado = potencia($base, $expo);
+                    if ($resultado == -1) {
+                        echo "<p>El número no puede ser negativo</p>";
+                    } else {
+                        echo "<p>El resultado es $resultado</p>";
+                    }
                 }
             }
         ?>
@@ -179,24 +177,23 @@
         <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($_POST["f"] == "ej6") {
+                    require 'funciones/factorial.php';
                     $numero = $_POST["numero1"];
 
                     
-                    $resultado=1;
+                    $resultado=factorial($numero);
 
 
     if($numero<0){
         echo "pon un numero valido";
     }else{
-        for($i=1;$i<=$numero;$i++){
-            $resultado=$resultado*$i;
-        
+        echo "<p>El resultado es $resultado</p>";
+
         }
-        echo "[$resultado]";
     }
     
                 }
-            }
+            
         ?>
     </div>
     </div>
