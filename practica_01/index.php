@@ -12,24 +12,30 @@
 <div>
         <h2 id="ej1">Ejercicio 1</h2>
         <p>Ejercicio que muestra los numeros primos a partir del numero q diga el usuario</p>
-        <form action="index.php#ej1" method="post">
+        <form action="index.php#ej1" method="get">
             <label>a</label><br>
-            <input type="text" name="numero"><br><br>
+            <input type="text" name="a"><br><br>
+            <label>b</label><br>
+            <input type="text" name="b"><br><br>
             <input type="hidden" name="f" value="ej1">
             <input type="submit" value="Enviar">
         </form>
         <?php
-        require 'funciones/primo.php';
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if ($_POST["f"] == "ej1") {
-        $numero=$_POST["numero"];
-        if(esPrimo($numero)==true){
-            echo 'Es primo';
-        }else{
-            echo 'No es primo';
-        }
-        }
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            if ($_GET["f"] == "ej1") {
+                require 'funciones/primo.php';
+                $a = $_GET['a'];
+                $b = $_GET['b'];
+                $contador = $b + 1;
+                do {
+                    if (esPrimo($contador)) {
+                        echo "$contador <br>";
+                        $a = $a - 1;
+                    }
+                    $contador++;
+                } while ($a != 0);
             }
+        }
         ?>
     </div>
     <div>
@@ -51,11 +57,13 @@
 
                     echo "<p>$numeros</p>";
                     echo "<p>$DNI</p>";
-                  /*  if(strlen($DNI<9 || $DNI>9)){
-                        echo "faltan o sobran caracteres"
-                    }*/
+                    if(strlen($DNI<9 && $DNI>9)){
+                        echo "faltan o sobran caracteres";
+                    }else{
+                        echo "ta bien";
+                    }
                     $cadena=$DNI;
-                    echo "[".substr( $cadena, 9  )."]<br />";
+                    echo "[".substr( $cadena, 9 )."]<br/>";
                     $letras = match($letras) {
                         "A" => "a",
                         "Tuesday" => "Martes",
