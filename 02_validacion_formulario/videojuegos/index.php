@@ -15,6 +15,7 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $temp_titulo = depurar($_POST["titulo"]);
             $temp_precio = depurar($_POST["precio"]);
+            $temp_consola=depurar($_POST["consola"]);
             $temp_descripcion=depurar($_POST["descripcion"]);
 
             if (empty($temp_titulo)) {
@@ -26,6 +27,12 @@
                     //exito
                     $titulo = $temp_titulo;
                 }
+            }
+            if (empty($temp_consola)) {
+                $err_consola="El campo es obligario";
+            }else {
+                    $consola=$temp_consola;           
+                
             }
             if (empty($temp_precio)) {
                 $err_precio = "El precio es obligatorio";
@@ -50,20 +57,22 @@
                 }
             }
             if (empty($temp_descripcion)) {
-                $err_titulo = "la descripcion es obligatoria";
+                $err_descripcion = "la descripcion es obligatoria";
             }else{
                 if(strlen($temp_descripcion)>255){
-                    $err_titulo="no puede tener tantos caracteres";
+                    $err_descripcion="no puede tener tantos caracteres";
                 }else{
                     //exito
                     $descripcion = $temp_descripcion;
                 }
-            }
-            if(isset($titulo)&& isset($precio)){
+            } 
+            if(isset($titulo)&& isset($precio)&& isset($consola)&& isset($descripcion)){
                 echo "<p>$titulo</p>";
                 echo "<p>$precio</p>";
-                echo "<p>$descripcion</p>";
+                echo "<p>$consola</p>";
+                echo "<p>$descripcion</p>";   
             }
+            
         }
         
 
@@ -85,14 +94,17 @@
                 * <?php if(isset($err_precio)) echo $err_precio ?>
             </span>
         </p>
-        <label for="cars">escoge una consola:</label>
+        <label for="consola">escoge una consola:</label>
         <select name="consola" id="consola" form="consolaform">
-            <option value=""></option>
+            <option selected value> -- select an option -- </option>
             <option value="ps4">ps4</option>
             <option value="switch">switch</option>
             <option value="ps5">ps5</option>
             <option value="nintendods">nintendods</option>
         </select>
+        <span class="error">
+                * <?php if(isset($err_consolas)) echo $err_consolas ?>
+            </span>
         <p>descripcion: <input type="text" name="descripcion">
         <span class="error">
                 * <?php if(isset($err_descripcion)) echo $err_descripcion ?>
