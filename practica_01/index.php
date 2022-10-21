@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +9,9 @@
     <title>Practica 1 Guillermo</title>
     <h1>Practica 1 Guillermo</h1>
 </head>
+
 <body>
-<div>
+    <div>
         <h2 id="ej1">Ejercicio 1</h2>
         <p>Ejercicio que muestra los numeros primos a partir del numero q diga el usuario</p>
         <form action="index.php#ej1" method="get">
@@ -21,8 +23,8 @@
             <input type="submit" value="Enviar">
         </form>
         <?php
-        if ($_SERVER["REQUEST_METHOD"] == "GET") {
-            if ($_GET["f"] == "ej1") {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if ($_POST["f"] == "ej1") {
                 require 'funciones/primo.php';
                 $a = $_GET['a'];
                 $b = $_GET['b'];
@@ -42,45 +44,73 @@
         <h2 id="ej2">Ejercicio 2</h2>
         <p>Crea un formulario que compruebe si un DNI es válido</p>
         <form action="index.php#ej2" method="post">
-            <label>numero</label><br>
-            <input type="text" name="numero1"><br><br>
             <label>DNI</label><br>
             <input type="text" name="DNI"><br><br>
-            <input type="hidden" name="f" value="ej1">
+            <input type="hidden" name="f" value="ej2">
             <input type="submit" value="Enviar">
         </form>
         <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($_POST["f"] == "ej2") {
-                    $numeros = $_POST["numeros"];
+                    
                     $DNI = $_POST["DNI"];
 
-                    echo "<p>$numeros</p>";
-                    echo "<p>$DNI</p>";
-                    if(strlen($DNI<9 && $DNI>9)){
+                    echo " $DNI ";
+
+                    $resultado=(int)$DNI%23;
+                    $letra = match($resultado){
+                        0 => "T",
+                        1 => "R",
+                        2 => "W",
+                        3 => "A",
+                        4 => "G",
+                        5 => "M",
+                        6 => "Y",
+                        7 => "F",
+                        8 => "P",
+                        9 => "D",
+                        10 => "X",
+                        11 => "B",
+                        12 => "N",
+                        13 => "J",
+                        14 => "Z",
+                        15 => "S",
+                        16 => "Q",
+                        17 => "V",
+                        18 => "H",
+                        19 => "L",
+                        20 => "C",
+                        21 => "K",
+                        22 => "E",
+                    };          
+                    if(strlen($DNI)>=10 || strlen($DNI)<=8){
+
                         echo "faltan o sobran caracteres";
-                    }else{
-                        echo "ta bien";
+
+                    }else{            
+                        $letra_introducida =substr($DNI,-1);            
+                        if($letra_introducida!==$letra){
+                            echo "<p>La letra $letra_introducida es incorrecta en el DNI $DNI </p>";
+                            echo "<p>La letra $letra es la correcta</p>";
+                        }else if($letra_introducida==$letra){
+                        
+                            echo "<p>La letra $letra_introducida es correcta en el DNI $DNI </p>";
+                        }
+                        
+                        }
                     }
-                    $cadena=$DNI;
-                    echo "[".substr( $cadena, 9 )."]<br/>";
-                    $letras = match($letras) {
-                        "A" => "a",
-                        "Tuesday" => "Martes",
-                        "Wednesday" => "Miércoles",
-                        "Thursday" => "Jueves",
-                    };
                 }
-            }
+            
+            
         ?>
     </div>
     <div>
-<h2 id="ej3">Ej3</h2>
-<form action="#ej3" method="post">
-<input type="hidden" name="f" value="ej3">
-<input type="submit" value="Mostrar tabla">
+        <h2 id="ej3">Ej3</h2>
+        <form action="#ej3" method="post">
+            <input type="hidden" name="f" value="ej3">
+            <input type="submit" value="Mostrar tabla">
 
-<?php 
+            <?php 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_POST["f"] == "ej3") {
@@ -107,9 +137,10 @@ echo "</table>";
     }
 }
 ?>
-</form>
+        </form>
 
 
 
 </body>
+
 </html>
