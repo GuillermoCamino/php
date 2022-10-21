@@ -14,10 +14,10 @@
     <div>
         <h2 id="ej1">Ejercicio 1</h2>
         <p>Ejercicio que muestra los numeros primos a partir del numero q diga el usuario</p>
-        <form action="index.php#ej1" method="get">
-            <label>a</label><br>
+        <form action="index.php#ej1" method="POST">
+            <label>cantidad</label><br>
             <input type="text" name="a"><br><br>
-            <label>b</label><br>
+            <label>numero que empieza</label><br>
             <input type="text" name="b"><br><br>
             <input type="hidden" name="f" value="ej1">
             <input type="submit" value="Enviar">
@@ -26,9 +26,9 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($_POST["f"] == "ej1") {
                 require 'funciones/primo.php';
-                $a = $_GET['a'];
-                $b = $_GET['b'];
-                $contador = $b + 1;
+                $a = $_POST['a'];
+                $b = $_POST['b'];
+                $contador = $b;
                 do {
                     if (esPrimo($contador)) {
                         echo "$contador <br>";

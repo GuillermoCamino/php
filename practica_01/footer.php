@@ -1,1 +1,0 @@
-<p> <a href="../index.php">Volver a la pagina principal </p>
