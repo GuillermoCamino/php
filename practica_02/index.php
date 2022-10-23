@@ -21,6 +21,7 @@
         $temp_primerApellido= depurar($_POST["primerApellido"]);
         $temp_segundoApellido= depurar($_POST["segundoApellido"]);
         $temp_edad= depurar($_POST["edad"]);
+        $temp_email= depurar($_POST["email"]);
 
         $patternDNI ="/^[0-9]{8}[A-zA-Z]+$/";
         $pattern ="/^[a-zA-Z áéíóúÁÉÍÓÚñÑ]+$/";
@@ -160,6 +161,24 @@
 
                 $edad=$temp_edad;
             }
+        }
+        if (empty($temp_email)){
+            $err_email="el email es obligatiorio";
+        }else if(filter_var($temp_email,FILTER_VALIDATE_EMAIL)==true){
+            if(str_contains($temp_email,'cabron')){
+                $err_email="el email no puede contener palabras malsonantes";
+            }else if (str_contains($temp_email,'tonto')){
+                $err_email="el email no puede contener palabras malsonantes";
+
+            }else if(str_contains($temp_email,'puta')){
+                $err_email="el email no puede contener palabras malsonantes";
+            }else{
+                echo "<p>$temp_email correcto</p>";
+
+                $email=$temp_email;
+            }
+        }else{
+            echo "<p>$temp_email no es correcto</p>";
         }
     }
     function depurar($dato) {
