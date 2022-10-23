@@ -10,12 +10,17 @@
 </head>
 <body>
     <?php
+    require 'funciones/esMayusucula.php';
+    require 'funciones/esMinuscula.php';
+
+ 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $temp_DNI=depurar($_POST["DNI"]);
         $temp_nombre = depurar($_POST["nombre"]);
         $temp_primerApellido= depurar($_POST["primerApellido"]);
         $temp_segundoApellido= depurar($_POST["segundoApellido"]);
+        $temp_edad= depurar($_POST["edad"]);
 
         $patternDNI ="/^[0-9]{8}[A-zA-Z]+$/";
         $pattern ="/^[a-zA-Z áéíóúÁÉÍÓÚñÑ]+$/";
@@ -28,7 +33,7 @@
                 $err_DNI="El DNI no tiene sufiecientes caracteres o sobran";
             }else{
                 if(preg_match($patternDNI,$temp_DNI)){
-                    echo "<p>$temp_DNI sigue el patron</p>";
+                    echo "<p>$temp_DNI</p>";
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
                             $resultado=(int)$temp_DNI%23;
@@ -103,9 +108,17 @@
                 $err_primerApellido="no puede tener tantos caracteres";
             }else{
                 if(preg_match($pattern,$temp_primerApellido)){
-                    echo "<p>$temp_primerApellido sigue el patron</p>";
-
-                    $primerApellido=$temp_primerApellido;
+                    if(esMinuscula($temp_primerApellido)){
+                        echo ucfirst("$temp_primerApellido sigue el patron");
+    
+                        $primerApellido=$temp_primerApellido;
+    
+                    }else if(!esMinuscula($temp_primerApellido)){
+    
+                        echo ("<p>$temp_primerApellido sigue el patron</p>");
+    
+                        $primerApellido=$temp_primerApellido;
+                    }
                 }else{
                     echo "<p>$temp_primerApellido no sigue el patron</p>";
                 }
@@ -118,14 +131,35 @@
                 $err_segundoApellido="no puede tener tantos caracteres";
             }else{
                 if(preg_match($pattern,$temp_segundoApellido)){
-                    echo "<p>$temp_segundoApellido sigue el patron</p>";
-                    echo ucfirst ($temp_segundoApellido);
+                    
+                if(esMinuscula($temp_segundoApellido)){
+                    echo ucfirst("$temp_segundoApellido sigue el patron");
 
                     $segundoApellido=$temp_segundoApellido;
+
+                }else if(!esMinuscula($temp_segundoApellido)){
+
+                    echo ("$temp_segundoApellido sigue el patron");
+
+                    $segundoApellido=$temp_segundoApellido;
+                }
                 }else{
                     echo "<p>$temp_segundoApellido no sigue el patron</p>";
                 }
             }    
+        }
+        if(empty($temp_edad)){
+            $err_edad="la edad es obligatoria";
+        }else{
+            if($temp_edad<0||$temp_edad>120){
+                $err_edad="la edad no es valida";
+            }else if($temp_edad<=17&&$temp_edad>0){
+                $err_edad="eres menor de edad";
+            }else if($temp_edad>=18&&$temp_edad<120){
+                echo "$temp_edad es correcta eres mayor de edad";
+
+                $edad=$temp_edad;
+            }
         }
     }
     function depurar($dato) {
@@ -139,8 +173,8 @@
         <label>Nombre</label>
         <input type="text" name="nombre">
         <span class="error">
-                * <?php if(isset($err_nombre)) echo $err_nombre ?>
-            </span>
+            * <?php if(isset($err_nombre)) echo $err_nombre ?>
+        </span>
         <br><br>
         <label>primer apellido</label>
         <input type="text" name="primerApellido">
@@ -166,11 +200,11 @@
                 * <?php if(isset($err_email)) echo $err_email ?>
             </span>
         <br><br>
-        <label>fecha</label>
-        <input type="text" name="fecha">
+        <label>edad</label>
+        <input type="text" name="edad">
         <span class="error">
-                * <?php if(isset($err_fecha)) echo $err_fecha?>
-            </span>
+            * <?php if(isset($err_edad)) echo $err_edad?>
+        </span>
         <br><br>
         <input type="submit" value="Enviar">
 
