@@ -18,7 +18,7 @@
 
             $pattern ="/^[a-zA-Z áéíóúÁÉÍÓÚñÑ]+$/";
             $patternDNI ="/^[0-9]{8}[A-zA-Z]+$/";
-            $patternfecha="/^[0-9]{1,2}\/[0-9]{1,2}\/([0-9][0-9]){1,2}+$/";
+            $patternfecha="/^[0-3][0-9]\/[0-1][0-9]\/(19|20)[0-9]{2}$/";
 
             if (empty($temp_nombre)) {
                 $err_nombre = "El nombre es obligatorio";
