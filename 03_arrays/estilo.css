@@ -1,0 +1,10 @@
+body{
+    background-color: #69EBD0;
+}
+.tabla{
+    border-color: green;
+}
+th, td {
+    border: 2px solid green;
+    border-radius: 10px;
+  }
