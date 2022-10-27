@@ -9,11 +9,30 @@
 <body>
     
     <?php
-    
-    for($i=0;$i<10;$i++){
-        $numeros=array(rand(0,100));
-        print_r($numeros);
+    $numeros = [];
+
+    for($i = 1; $i <= 10; $i++) {
+        $numeros[] = rand(0,100);
     }
     ?>
+
+    <h2>Números ordenados de mayor a menor</h2>
+    <ul>
+        <?php
+        rsort($numeros);
+        for ($i = 0; $i < count($numeros); $i++) {
+            echo "<li>" . $numeros[$i] . "</li>";
+        }
+        ?>
+    </ul>
+
+    <h2>Números ordenados de menor a mayor</h2>
+    <ul>
+        <?php
+        sort($numeros);
+        for ($i = 0; $i < count($numeros); $i++) {
+            echo "<li>" . $numeros[$i] . "</li>";
+        }
+        ?>
 </body>
 </html>
