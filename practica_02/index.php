@@ -10,8 +10,6 @@
 </head>
 <body>
     <?php
-    require 'funciones/esMayusucula.php';
-    require 'funciones/esMinuscula.php';
 
  
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -34,7 +32,6 @@
                 $err_DNI="El DNI no tiene sufiecientes caracteres o sobran";
             }else{
                 if(preg_match($patternDNI,$temp_DNI)){
-                    echo "<p>$temp_DNI</p>";
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
                             $resultado=(int)$temp_DNI%23;
@@ -65,14 +62,14 @@
                             };          
                             if(strlen($temp_DNI)>=10 || strlen($temp_DNI)<=8){
         
-                                echo "faltan o sobran caracteres";
+                                $err_DNI ="faltan o sobran caracteres";
         
                             }else{            
                                 $letra_introducida =substr($temp_DNI,-1);       
 
                                 if($letra_introducida!==$letra){
-                                    echo "<p>La letra $letra_introducida es incorrecta en el DNI $temp_DNI </p>";
-                                    echo "<p>La letra $letra es la correcta</p>";
+                                    $err_DNI ="La letra $letra_introducida es incorrecta en el DNI $temp_DNI ";
+                                    $err_DNI ="La letra $letra es la correcta";
                                 }else if($letra_introducida==$letra){
                                 
                                     echo "<p>La letra $letra_introducida es correcta en el DNI $temp_DNI </p>";
@@ -83,7 +80,7 @@
                         
                     $DNI=$temp_DNI;
                 }else{
-                    echo "<p>$temp_DNI no sigue el patron</p>";
+                    $err_dni = "no sigue el patron";
                 }
             }
         }
@@ -91,17 +88,17 @@
             $err_nombre = "El nombre es obligatorio";
         }else{
             if(strlen($temp_nombre)>40){
-                $err_titulo="no puede tener tantos caracteres";
+                $err_nombre="no puede tener tantos caracteres";
             }else{
                 if(preg_match($pattern,$temp_nombre)){
-                    echo "<p>$temp_nombre sigue el patron</p>";
+                    echo "<p>". mb_convert_case($temp_nombre,MB_CASE_TITLE,"UTF-8") ." sigue el patron</p>";
 
                     $nombre=$temp_nombre;
                 }else{
-                    echo "<p>$temp_nombre no sigue el patron</p>";
+                    $err_nombre ="no sigue el patron";
                 }
             }
-        }   
+        } 
         if (empty($temp_primerApellido)){
             $err_primerApellido="el apellido es obligatiorio";
         }else{
@@ -109,22 +106,15 @@
                 $err_primerApellido="no puede tener tantos caracteres";
             }else{
                 if(preg_match($pattern,$temp_primerApellido)){
-                    if(esMinuscula($temp_primerApellido)){
-                        echo ucfirst("$temp_primerApellido sigue el patron");
-    
-                        $primerApellido=$temp_primerApellido;
-    
-                    }else if(!esMinuscula($temp_primerApellido)){
-    
-                        echo ("<p>$temp_primerApellido sigue el patron</p>");
-    
-                        $primerApellido=$temp_primerApellido;
-                    }
+                    echo "<p>". mb_convert_case($temp_primerApellido,MB_CASE_TITLE,"UTF-8") ." sigue el patron</p>";
+
+                    $primerApellido=$temp_primerApellido;
                 }else{
-                    echo "<p>$temp_primerApellido no sigue el patron</p>";
+                    $err_primerApellido ="no sigue el patron";
                 }
-            }    
-        }
+            }
+        } 
+
         if (empty($temp_segundoApellido)){
             $err_segundoApellido="el apellido es obligatiorio";
         }else{
@@ -132,23 +122,14 @@
                 $err_segundoApellido="no puede tener tantos caracteres";
             }else{
                 if(preg_match($pattern,$temp_segundoApellido)){
-                    
-                if(esMinuscula($temp_segundoApellido)){
-                    echo ucfirst("$temp_segundoApellido sigue el patron");
+                    echo "<p>". mb_convert_case($temp_segundoApellido,MB_CASE_TITLE,"UTF-8") ." sigue el patron</p>";
 
                     $segundoApellido=$temp_segundoApellido;
-
-                }else if(!esMinuscula($temp_segundoApellido)){
-
-                    echo ("$temp_segundoApellido sigue el patron");
-
-                    $segundoApellido=$temp_segundoApellido;
-                }
                 }else{
-                    echo "<p>$temp_segundoApellido no sigue el patron</p>";
+                    $err_segundoApellido= "no sigue el patron";
                 }
-            }    
-        }
+            }
+        } 
         if(empty($temp_edad)){
             $err_edad="la edad es obligatoria";
         }else{
@@ -157,7 +138,7 @@
             }else if($temp_edad<=17&&$temp_edad>0){
                 $err_edad="eres menor de edad";
             }else if($temp_edad>=18&&$temp_edad<120){
-                echo "$temp_edad es correcta eres mayor de edad";
+                echo "<p>$temp_edad es correcta eres mayor de edad</p>";
 
                 $edad=$temp_edad;
             }
@@ -178,7 +159,7 @@
                 $email=$temp_email;
             }
         }else{
-            echo "<p>$temp_email no es correcto</p>";
+            $err_email= "no es correcto";
         }
     }
     function depurar($dato) {

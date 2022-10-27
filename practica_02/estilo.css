@@ -1,5 +1,5 @@
 body{
-    background-color: #D8D9CF;
+    background-color: #69EBD0;
 }
 input[type=text], select {
     width: 50%;
@@ -13,7 +13,7 @@ input[type=text], select {
 
   input[type=submit] {
     width: 100%;
-    background-color: #FF8787;
+    background-color: #558564;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -23,14 +23,17 @@ input[type=text], select {
   }
 
   input[type=submit]:hover {
-    background-color: #E26868;
+    background-color: #558564;
     transform: scale(1.5);
     transition: all 1s;
   }
 
   div {
     border-radius: 5px;
-    background-color: #EDEDED;
+    background-color: #95F9E3;
     padding: 20px;
   }
+  span.error{
+    color: brown;
+}
   
