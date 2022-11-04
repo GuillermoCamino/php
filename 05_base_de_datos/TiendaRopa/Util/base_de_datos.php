@@ -1,7 +1,7 @@
 <?php
     $servidor= 'localhost';
-    $usuario='root';
-    $contrasena = '';
+    $usuario='admin';
+    $contrasena = 'Adminbd26';
     $base_de_datos='db_tienda_ropa';
 
 

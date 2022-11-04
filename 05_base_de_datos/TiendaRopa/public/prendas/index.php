@@ -23,7 +23,7 @@
                     </thead>
                     <tbody>
                         <?php
-                            require 'util/base_de_datos.php';
+                            require '../../util/base_de_datos.php';
                             $sql="SELECT * FROM prendas";
                             $resultado=$conexion -> query($sql);
 
