@@ -25,7 +25,7 @@
     
         if(!empty($nombre) && !empty($talla) && !empty($precio)){
             if(!empty($categoria)){
-            $sql= "INSERT INTO prendas (nombre,talla,precio,categoria) VALUES ('$nombre','$talla','$precio',$categoria)";
+            $sql= "INSERT INTO prendas (nombre,talla,precio,categoria) VALUES ('$nombre','$talla','$precio','$categoria')";
             } else {
                 $sql= "INSERT INTO prendas (nombre,talla,precio) VALUES ('$nombre','$talla','$precio')";
             }
@@ -72,6 +72,8 @@
                         <input class="form-control" type="text" name="precio">
                     </div>
                     <button class="btn btn-primary" type="submit">Crear</button>
+                    <a class="btn-btn-secundary" href="index.php">Volver</a>
+
                 </form>
 
             </div>

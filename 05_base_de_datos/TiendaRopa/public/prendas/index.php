@@ -13,12 +13,14 @@
         <h1>Listado de prendas</h1>
         <div class="row">
             <div class="col-9">
+                <a class="btn-btn-primary" href="insertar_prenda.php">Nueva Prenda</a>
                 <table class=" table table-striped table-hover">
                     <thead>
                         <tr>
                             <th class="table table-dark">Nombre</th>
                             <th class="table table-dark">Talla</th>
                             <th class="table table-dark">Precio</th>
+                            <th class="table table-dark">Categoria</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,11 +34,13 @@
                                     $nombre=$fila["nombre"];
                                     $talla=$fila["talla"];
                                     $precio=$fila["precio"];
+                                    $categoria=$fila["categoria"];
                                     ?>
                                         <tr>
                                             <td><?php echo $nombre?></td>
                                             <td><?php echo $talla?></td>
                                             <td><?php echo $precio?></td>
+                                            <td><?php echo $categoria?></td>
                                         </tr>
                                     <?php
                                 }
