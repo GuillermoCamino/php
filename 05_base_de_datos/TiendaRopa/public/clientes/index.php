@@ -12,37 +12,39 @@
     <div class="container">
     <?php require '../header.php' 
     ?>
-        <h1>Listado de prendas</h1>
+        <h1>Listado de clientes</h1>
         <div class="row">
             <div class="col-9">
-                <a class="btn-btn-primary" href="insertar_prenda.php">Nueva Prenda</a>
                 <table class=" table table-striped table-hover">
                     <thead>
                         <tr>
+                            <th class="table table-dark">Usuario</th>
                             <th class="table table-dark">Nombre</th>
-                            <th class="table table-dark">Talla</th>
-                            <th class="table table-dark">Precio</th>
-                            <th class="table table-dark">Categoria</th>
+                            <th class="table table-dark">Apellido1</th>
+                            <th class="table table-dark">Apellido1</th>
+                            <th class="table table-dark">fecha_nacimiento</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                             require '../../util/base_de_datos.php';
-                            $sql="SELECT * FROM prendas";
+                            $sql="SELECT * FROM clientes";
                             $resultado=$conexion -> query($sql);
 
                             if($resultado -> num_rows > 0){
                                 while ($fila = $resultado -> fetch_assoc()){
+                                    $usuario=$fila["usuario"];
                                     $nombre=$fila["nombre"];
-                                    $talla=$fila["talla"];
-                                    $precio=$fila["precio"];
-                                    $categoria=$fila["categoria"];
+                                    $apellido_1=$fila["apellido_1"];
+                                    $apellido_2=$fila["apellido_2"];
+                                    $fecha_nacimiento=$fila["fecha_nacimiento"];
                                     ?>
                                         <tr>
+                                            <td><?php echo $usuario?></td>
                                             <td><?php echo $nombre?></td>
-                                            <td><?php echo $talla?></td>
-                                            <td><?php echo $precio?></td>
-                                            <td><?php echo $categoria?></td>
+                                            <td><?php echo $apellido_1?></td>
+                                            <td><?php echo $apellido_2?></td>
+                                            <td><?php echo $fecha_nacimiento?></td>
                                         </tr>
                                     <?php
                                 }
@@ -50,9 +52,6 @@
                         ?>
                     </tbody>
                 </table>
-            </div>
-            <div class="col-3">
-                <img width="300" height="300" src="../../resources/images/ropa.jpg">
             </div>
         </div>
 

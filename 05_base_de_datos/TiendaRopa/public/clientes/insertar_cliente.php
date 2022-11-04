@@ -14,20 +14,22 @@
     <?php
     require '../../util/base_de_datos.php';
     if($_SERVER["REQUEST_METHOD"]=="POST"){
+        $usuario=$_POST["usuario"];
         $nombre=$_POST["nombre"];
-        $talla=$_POST["talla"];
-        $precio=$_POST["precio"];
-        if(isset($_POST["categoria"])){
-            $categoria=$_POST["categoria"];
+        $apellido_1=$_POST["apellido_1"];
+        $apellido_2=$_POST["apellido_2"];
+        $fecha_nacimiento=$_POST["fecha_nacimiento"];
+        if(isset($_POST["apellido_2"])){
+            $apellido_2=$_POST["apellido_2"];
         }else{
-            $categoria="";
+            $apellido_2="";
         }
     
-        if(!empty($nombre) && !empty($talla) && !empty($precio)){
+        if(!empty($usuario) && !empty($nombre) && !empty($apellido_1)&& !empty($fecha_nacimiento)){
             if(!empty($categoria)){
-            $sql= "INSERT INTO prendas (nombre,talla,precio,categoria) VALUES ('$nombre','$talla','$precio','$categoria')";
+            $sql= "INSERT INTO prendas (usuario,nombre,apellido_1,apellido_2,fecha_nacimiento) VALUES ($usuario,'$nombre','$apellido_1','$apellido_2','$fecha_nacimiento')";
             } else {
-                $sql= "INSERT INTO prendas (nombre,talla,precio) VALUES ('$nombre','$talla','$precio')";
+                $sql= "INSERT INTO prendas ((usuario,nombre,apellido_1,fecha_nacimiento) VALUES ('$usuario,'$nombre','$apellido_1','$fecha_nacimiento')";
             }
             if($conexion -> query($sql)=="TRUE"){
                 echo "<p>Prenda Inseratda</p>";
@@ -47,32 +49,24 @@
             <div class="col-6">
                 <form action="" method="post">
                     <div class="form-group mb-3">
-                    <label class="form-label">Nombre</label>
+                    <label class="form-label">Usuario</label>
+                    <input class="form-control" type="text" name="Usuario">
+                    </div>
+                    <div class="form-group mb-3">
+                    <label class="form-label">nombre</label>
                     <input class="form-control" type="text" name="nombre">
                     </div>
                     <div class="form-group mb-3">
-                    <label class="form-label">categoria</label>
-                        <select class="form-select" name="categoria">
-                        <option value="" select disabled hidden> -- select an option -- </option>
-                        <option value="camisetas">camisetas</option>
-                        <option value="pantalones">pantalones</option>
-                        <option value="accesorios">accesorios</option>
-                        </select>
+                    <label class="form-label">apellido_1</label>
+                    <input class="form-control" type="text" name="apellido_1">
                     </div>
                     <div class="form-group mb-3">
-                        <label class="form-label">Talla</label>
-                        <select class="form-select" name="talla">
-                        <option value="" select disabled hidden> -- select an option -- </option>
-                        <option value="xs">XS</option>
-                        <option value="s">S</option>
-                        <option value="m">M</option>
-                        <option value="l">L</option>
-                        <option value="xl">XL</option>
-                        </select>
+                    <label class="form-label">apellido_2</label>
+                    <input class="form-control" type="text" name="apellido_2">
                     </div>
                     <div class="form-group mb-3">
-                        <label class="form-label">Precio</label>
-                        <input class="form-control" type="text" name="precio">
+                    <label class="form-label">fecha_nacimiento</label>
+                    <input class="form-control" type="text" name="fecha_nacimiento">
                     </div>
                     <button class="btn btn-primary" type="submit">Crear</button>
                     <a class="btn-btn-secundary" href="index.php">Volver</a>
