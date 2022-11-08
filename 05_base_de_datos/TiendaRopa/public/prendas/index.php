@@ -10,24 +10,38 @@
 </head>
 <body>
     <div class="container">
-    <?php require '../header.php' 
-    ?>
+    <?php require '../header.php' ?>
+    <?php require '../../util/base_de_datos.php'; ?>
         <h1>Listado de prendas</h1>
         <div class="row">
             <div class="col-9">
-                <a class="btn-btn-primary" href="insertar_prenda.php">Nueva Prenda</a>
+                <a class="btn btn-primary" href="insertar_prenda.php">Nueva Prenda</a>
                 <table class=" table table-striped table-hover">
-                    <thead>
+                    <thead class="table table-dark">
                         <tr>
-                            <th class="table table-dark">Nombre</th>
-                            <th class="table table-dark">Talla</th>
-                            <th class="table table-dark">Precio</th>
-                            <th class="table table-dark">Categoria</th>
+                            <th>Nombre</th>
+                            <th>Talla</th>
+                            <th>Precio</th>
+                            <th>Categoria</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                            require '../../util/base_de_datos.php';
+                        <?php // borrar prenda
+                            if ($_SERVER["REQUEST_METHOD"] == "POST"){
+                                $id=$_POST["id"];
+                                $sql = "DELETE FROM prendas WHERE id = '$id'";
+                                if($conexion -> query($sql)){
+                                    ?> 
+                                    <div class="alert alert-info alert-dismissible fade show" role="alert"><?php  echo "<p>Registro borrado</p>"; ?><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+                                    <?php
+                                }else{
+                                    echo "<p>No se ha podido borrar</p>";
+                                }
+                            }
+                        ?>
+                        <?php //seleccionar prendas
                             $sql="SELECT * FROM prendas";
                             $resultado=$conexion -> query($sql);
 
@@ -47,10 +61,12 @@
                                                 <form action="mostrar_prenda.php" method="get">
                                                     <button class="btn btn-primary" type="submit">Ver</button>
                                                     <input type="hidden" name="id" value="<?php echo $fila["id"] ?>">
-                                                    <input type="hidden" name="nombre" value="<?php echo $fila["nombre"] ?>">
-                                                    <input type="hidden" name="talla" value="<?php echo $fila["talla"] ?>">
-                                                    <input type="hidden" name="precio" value="<?php echo $fila["precio"] ?>">
-                                                    <input type="hidden" name="categoria" value="<?php echo $fila["categoria"] ?>">
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action="" method="post">
+                                                    <button class="btn btn-danger" type="submit">Borrar</button>
+                                                    <input type="hidden" name="id" value="<?php echo $fila["id"] ?>">
                                                 </form>
                                             </td>
                                         </tr>

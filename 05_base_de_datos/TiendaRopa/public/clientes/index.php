@@ -15,7 +15,7 @@
         <h1>Listado de clientes</h1>
         <div class="row">
             <div class="col-9">
-            <a class="btn-btn-primary" href="insertar_cliente.php">Nuevo cliente</a>
+            <a class="btn btn-primary" href="insertar_cliente.php">Nuevo cliente</a>
                 <table class=" table table-striped table-hover">
                     <thead>
                         <tr>
