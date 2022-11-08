@@ -24,33 +24,36 @@
         }else{
             $apellido_2="";
         }
-    
-        if(!empty($usuario) && !empty($nombre) && !empty($apellido_1)&& !empty($fecha_nacimiento)){
-            if(!empty($categoria)){
-            $sql= "INSERT INTO prendas (usuario,nombre,apellido_1,apellido_2,fecha_nacimiento) VALUES ($usuario,'$nombre','$apellido_1','$apellido_2','$fecha_nacimiento')";
-            } else {
-                $sql= "INSERT INTO prendas ((usuario,nombre,apellido_1,fecha_nacimiento) VALUES ('$usuario,'$nombre','$apellido_1','$fecha_nacimiento')";
-            }
+        $apellido_2=!empty($apellido_2) ? "'$apellido_2'" : "NULL";
+        
+            
+        $sql= "INSERT INTO clientes (usuario,nombre,apellido_1,apellido_2,fecha_nacimiento) VALUES ('$usuario','$nombre','$apellido_1','$apellido_2','$fecha_nacimiento')";
             if($conexion -> query($sql)=="TRUE"){
-                echo "<p>Prenda Inseratda</p>";
+                ?>               
+                <div class="alert alert-info" role="alert"><?php echo "<p>cliente insertado</p>"; ?><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+                <?php
+                
+
             }else{
-                echo "<p>Error al insertar</p>";
+                ?>               
+                    <div class="alert alert-danger" role="alert"><?php echo "<p>Error al insertar</p>"; ?><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+                <?php
             }
+        
         }
-    }
     ?>
     <div class="container">
     <?php require '../header.php' 
 
     ?>
-        <h1>Nueva prenda</h1>
+        <h1>Nuevo Cliente</h1>
 
         <div class="row">
             <div class="col-6">
                 <form action="" method="post">
                     <div class="form-group mb-3">
                     <label class="form-label">Usuario</label>
-                    <input class="form-control" type="text" name="Usuario">
+                    <input class="form-control" type="text" name="usuario">
                     </div>
                     <div class="form-group mb-3">
                     <label class="form-label">nombre</label>
@@ -66,7 +69,7 @@
                     </div>
                     <div class="form-group mb-3">
                     <label class="form-label">fecha_nacimiento</label>
-                    <input class="form-control" type="text" name="fecha_nacimiento">
+                    <input class="form-control" type="date" name="fecha_nacimiento">
                     </div>
                     <button class="btn btn-primary" type="submit">Crear</button>
                     <a class="btn-btn-secundary" href="index.php">Volver</a>

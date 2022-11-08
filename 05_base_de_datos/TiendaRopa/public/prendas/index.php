@@ -43,6 +43,16 @@
                                             <td><?php echo $talla?></td>
                                             <td><?php echo $precio?></td>
                                             <td><?php echo $categoria?></td>
+                                            <td>
+                                                <form action="mostrar_prenda.php" method="get">
+                                                    <button class="btn btn-primary" type="submit">Ver</button>
+                                                    <input type="hidden" name="id" value="<?php echo $fila["id"] ?>">
+                                                    <input type="hidden" name="nombre" value="<?php echo $fila["nombre"] ?>">
+                                                    <input type="hidden" name="talla" value="<?php echo $fila["talla"] ?>">
+                                                    <input type="hidden" name="precio" value="<?php echo $fila["precio"] ?>">
+                                                    <input type="hidden" name="categoria" value="<?php echo $fila["categoria"] ?>">
+                                                </form>
+                                            </td>
                                         </tr>
                                     <?php
                                 }
