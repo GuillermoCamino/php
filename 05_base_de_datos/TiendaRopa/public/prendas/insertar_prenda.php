@@ -22,12 +22,22 @@
         }else{
             $categoria="";
         }
-    
+    $file_name=$_FILES["imagen"]["name"];
+    $file_temp_name=$_FILES["imagen"]["tmp_name"];
+    $path="../../resources/images/prendas/" . $file_name;
+
+
         if(!empty($nombre) && !empty($talla) && !empty($precio)){
+            if(move_uploaded_file($file_temp_name,$path)){
+                echo "<p>Fichero movido con exito</p>";
+            }else{
+                echo "<p>No se ha podido mover el fichero</p>";
+            }
+            $imagen = "/resources/images/prendas/" . $file_name;
             if(!empty($categoria)){
-            $sql= "INSERT INTO prendas (nombre,talla,precio,categoria) VALUES ('$nombre','$talla','$precio','$categoria')";
+            $sql= "INSERT INTO prendas (nombre,talla,precio,categoria,imagen) VALUES ('$nombre','$talla','$precio','$categoria','$imagen')";
             } else {
-                $sql= "INSERT INTO prendas (nombre,talla,precio) VALUES ('$nombre','$talla','$precio')";
+                $sql= "INSERT INTO prendas (nombre,talla,precio,imagen) VALUES ('$nombre','$talla','$precio','$imagen')";
             }
             if($conexion -> query($sql)=="TRUE"){
                 echo "<p>Prenda Inseratda</p>";
@@ -45,7 +55,7 @@
 
         <div class="row">
             <div class="col-6">
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     <div class="form-group mb-3">
                     <label class="form-label">Nombre</label>
                     <input class="form-control" type="text" name="nombre">
@@ -60,6 +70,10 @@
                         </select>
                     </div>
                     <div class="form-group mb-3">
+                        <label class="form-label">Precio</label>
+                        <input class="form-control" type="text" name="precio">
+                    </div>
+                    <div class="form-group mb-3">
                         <label class="form-label">Talla</label>
                         <select class="form-select" name="talla">
                         <option value="" select disabled hidden> -- select an option -- </option>
@@ -71,8 +85,8 @@
                         </select>
                     </div>
                     <div class="form-group mb-3">
-                        <label class="form-label">Precio</label>
-                        <input class="form-control" type="text" name="precio">
+                        <label class="form-label">Imagen</label>
+                        <input class="form-control" type="file" name="imagen">
                     </div>
                     <button class="btn btn-primary" type="submit">Crear</button>
                     <a class="btn-btn-secundary" href="index.php">Volver</a>
