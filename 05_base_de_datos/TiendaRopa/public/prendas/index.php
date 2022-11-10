@@ -20,6 +20,7 @@
                     <thead class="table table-dark">
                         <tr>
                             <th>Nombre</th>
+                            <th></th>
                             <th>Talla</th>
                             <th>Precio</th>
                             <th>Categoria</th>
@@ -32,6 +33,7 @@
                             if ($_SERVER["REQUEST_METHOD"] == "POST"){
                                 $id=$_POST["id"];
                                 $sql = "DELETE FROM prendas WHERE id = '$id'";
+                                unlink($imagen);
                                 if($conexion -> query($sql)){
                                     ?> 
                                     <div class="alert alert-info alert-dismissible fade show" role="alert"><?php  echo "<p>Registro borrado</p>"; ?><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
@@ -51,9 +53,13 @@
                                     $talla=$fila["talla"];
                                     $precio=$fila["precio"];
                                     $categoria=$fila["categoria"];
+                                    $imagen=$fila["imagen"];
                                     ?>
                                         <tr>
                                             <td><?php echo $nombre?></td>
+                                            <td>
+                                                <img width="50" height="70" src="../..<?php echo $imagen?>">
+                                            </td>
                                             <td><?php echo $talla?></td>
                                             <td><?php echo $precio?></td>
                                             <td><?php echo $categoria?></td>
