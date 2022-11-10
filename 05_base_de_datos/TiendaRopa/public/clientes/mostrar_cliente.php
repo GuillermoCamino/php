@@ -22,16 +22,17 @@
             $id = $_GET["id"];
             echo "<p>$id</p>";
 
-            $sql = "SELECT * FROM prendas WHERE id = '$id'";
+            $sql = "SELECT * FROM clientes WHERE id = '$id'";
 
             $resultado = $conexion -> query($sql);
 
             if ($resultado -> num_rows > 0) {
                 while ($fila = $resultado -> fetch_assoc()) {
+                    $usuario = $fila["usuario"];
                     $nombre = $fila["nombre"];
-                    $talla = $fila["talla"];
-                    $precio = $fila["precio"];
-                    $categoria = $fila["categoria"];
+                    $apellido_1 = $fila["apellido_1"];
+                    $apellido_2 = $fila["apellido_2"];
+                    $fecha_nacimiento = $fila["fecha_nacimiento"];
                     $imagen = $fila["imagen"];
                     
                 }
@@ -42,18 +43,20 @@
 
         <div class="row">
             <div class="col-6">
+                <p>usuario: <?php echo $usuario?></p>
                 <p>nombre: <?php echo $nombre?></p>
-                <p>talla: <?php echo $talla?></p>
-                <p>precio: <?php echo $precio?></p>
-                <p>categoria: <?php echo $categoria?></p>
+                <p>apellido_1: <?php echo $apellido_1?></p>
+                <p>apellido_2: <?php echo $apellido_2?></p>
+                <p>fecha_nacimiento: <?php echo $fecha_nacimiento?></p>
                 <a class="btn btn-secondary" href="index.php">Volver</a>
                 <br><br>
-                <form action="editar_prenda.php" method="get">
+                <form action="editar_cliente.php" method="get">
                     <input type="hidden" name="id" value="<?php echo $id ?>" >
+                    <input type="hidden" name="usuario" value="<?php echo $usuario ?>">
                     <input type="hidden" name="nombre" value="<?php echo $nombre ?>">
-                    <input type="hidden" name="talla" value="<?php echo $talla ?>">
-                    <input type="hidden" name="precio" value="<?php echo $precio ?>">
-                    <input type="hidden" name="categoria" value="<?php echo $categoria ?>">
+                    <input type="hidden" name="apellido_1" value="<?php echo $apellido_1 ?>">
+                    <input type="hidden" name="apellido_2" value="<?php echo $apellido_2 ?>">
+                    <input type="hidden" name="fecha_nacimiento" value="<?php echo $fecha_nacimiento ?>">
                     <button type="submit" class="btn btn-primary">Editar</button>
                 </form>
             </div>

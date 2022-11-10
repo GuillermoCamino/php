@@ -26,8 +26,23 @@
         }
         $apellido_2=!empty($apellido_2) ? "'$apellido_2'" : "NULL";
         
-            
-        $sql= "INSERT INTO clientes (usuario,nombre,apellido_1,apellido_2,fecha_nacimiento) VALUES ('$usuario','$nombre','$apellido_1','$apellido_2','$fecha_nacimiento')";
+        $file_name=$_FILES["imagen"]["name"];
+        $file_temp_name=$_FILES["imagen"]["tmp_name"];
+        $path="../../resources/images/avatar/" . $file_name;
+
+        if(move_uploaded_file($file_temp_name,$path)){
+            echo "<p>Fichero movido con exito</p>";
+        }else{
+            echo "<p>No se ha podido mover el fichero</p>";
+        }
+        if (empty($imagen)){
+            $imagen='/resources/images/avatarPredeterminado.jpg';
+
+        }else{
+            $imagen = "/resources/images/avatar/";   
+        }
+        $sql= "INSERT INTO clientes (usuario,nombre,apellido_1,apellido_2,fecha_nacimiento,imagen) VALUES ('$usuario','$nombre','$apellido_1',$apellido_2,'$fecha_nacimiento','$imagen')";
+        
             if($conexion -> query($sql)=="TRUE"){
                 ?>               
                 <div class="alert alert-info" role="alert"><?php echo "<p>cliente insertado</p>"; ?><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
@@ -50,7 +65,7 @@
 
         <div class="row">
             <div class="col-6">
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     <div class="form-group mb-3">
                     <label class="form-label">Usuario</label>
                     <input class="form-control" type="text" name="usuario">
@@ -70,6 +85,10 @@
                     <div class="form-group mb-3">
                     <label class="form-label">fecha_nacimiento</label>
                     <input class="form-control" type="date" name="fecha_nacimiento">
+                    </div>
+                    <div class="form-group mb-3">
+                    <label class="form-label">imagen</label>
+                    <input class="form-control" type="file" name="imagen">
                     </div>
                     <button class="btn btn-primary" type="submit">Crear</button>
                     <a class="btn-btn-secundary" href="index.php">Volver</a>

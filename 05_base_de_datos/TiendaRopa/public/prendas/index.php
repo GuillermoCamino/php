@@ -32,11 +32,22 @@
                         <?php // borrar prenda
                             if ($_SERVER["REQUEST_METHOD"] == "POST"){
                                 $id=$_POST["id"];
+                                $sql = "SELECT imagen FROM prendas WHERE id='$id'";
+                                $resultado=$conexion -> query($sql);
+                                if ($resultado -> num_rows >0){
+                                    while ($fila = $resultado -> fetch_assoc()){
+                                        $imagen = $fila["imagen"];
+                                    }
+                                    unlink("../.." . $imagen);
+                                }
+
                                 $sql = "DELETE FROM prendas WHERE id = '$id'";
-                                unlink($imagen);
+                                
                                 if($conexion -> query($sql)){
                                     ?> 
-                                    <div class="alert alert-info alert-dismissible fade show" role="alert"><?php  echo "<p>Registro borrado</p>"; ?><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+                                    <div class="alert alert-info alert-dismissible fade show" role="alert"><?php  
+                                    echo "<p>Registro borrado</p>";?>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
                                     <?php
                                 }else{
                                     echo "<p>No se ha podido borrar</p>";
