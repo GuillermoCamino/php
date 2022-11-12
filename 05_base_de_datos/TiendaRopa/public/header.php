@@ -21,6 +21,12 @@
           <a class="nav-link" href="http://localhost/05_base_de_datos/TiendaRopa/public/clientes/index.php">Clientes</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="http://localhost/05_base_de_datos/TiendaRopa/public/compras/index.php">Comrpas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://localhost/05_base_de_datos/TiendaRopa/public/compras/producto_compras.php">Nueva compra</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link disabled"></a>
         </li>
       </ul>
