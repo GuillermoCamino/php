@@ -29,7 +29,7 @@
             ?>               
             <div class="alert alert-info" role="alert"><?php echo "<p>cliente insertado</p>"; ?><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
             <?php
-            
+            header("location: iniciar_sesion.php");
 
         }else{
             ?>               

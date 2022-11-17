@@ -28,16 +28,15 @@
             }
             $acceso_valido=password_verify($contrasena,$hash_contrasena);
 
-            if ($acceso_valido==TRUE){
-                ?>
-                <div class="alert alert-info" role="alert"><?php echo "<p>Acceso valido</p>"; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
-                <?php
+            if($acceso_valido==TRUE){
+                ?><div class="alert alert-success" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><?php echo "<p>Login exitosa</p>";?></button></div><?php 
+
+                session_start();
+                $_SESSION["usuario"]=$usuario;
+
+                header('location:index.php');
             }else{
-                ?>
-                <div class="alert alert-danger" role="alert"><?php echo "<p>Acceso invalido</p>"; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
-                <?php
+                ?><div class="alert alert-danger" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><?php echo "<p>Error al iniciar</p>";?></button></div><?php 
             }
         }
     }
