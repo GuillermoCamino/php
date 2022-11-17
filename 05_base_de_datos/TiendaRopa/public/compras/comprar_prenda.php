@@ -12,7 +12,13 @@
 
 <?php require '../header.php' ?>
 <?php require '../../util/base_de_datos.php' ?>
-
+<?php  session_start();
+            if(!isset($_SESSION["usuario"])){
+                header("location: http://localhost/05_base_de_datos/TiendaRopa/public/clientes/iniciar_sesion.php");
+            }else{
+                echo "<p> Has iniciado sesion " . $_SESSION["usuario"] . "</p>";
+            }
+            ?>
 <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $prenda_id = $_POST["prenda"];
@@ -36,7 +42,7 @@
 
 <div class="container">
     <h1>Comprar prenda</h1>
-
+    <a href="../../util/desconectarse.php">Cerrar Sesion</a>
     <div class="row">
         <div class="col-9">
             <table class="table">

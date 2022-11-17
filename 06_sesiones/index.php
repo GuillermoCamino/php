@@ -9,14 +9,25 @@
     <title>Document</title>
 </head>
 <body>
+    <?php 
+    require 'base_de_datos.php';
+    $sql="SELECT rol FROM usuarios"
+    ?>
     <div class="container">
         <div class="row">
             <?php
             session_start();
             if(!isset($_SESSION["usuario"])){
                 header("location: iniciar_sesion.php");
+
+            }
+            else if(isset($_SESSION["$rol='administrador'"])){
+                echo "<p> Has iniciado sesion " . $_SESSION["usuario"] . "</p>";
+                echo "<p>Esto solo lo puede ver los admins</p>";
+
             }else{
                 echo "<p> Has iniciado sesion " . $_SESSION["usuario"] . "</p>";
+                echo "<p>Esto lo puede ver cualquier usuario</p>";
             }
             ?>
         </div>

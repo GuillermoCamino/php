@@ -27,6 +27,15 @@
           <a class="nav-link" href="http://localhost/05_base_de_datos/TiendaRopa/public/compras/comprar_prenda.php">Nueva compra</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="http://localhost/05_base_de_datos/TiendaRopa/public/clientes/registrarse.php">Registrarse</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://localhost/05_base_de_datos/TiendaRopa/public/clientes/iniciar_sesion.php">Login</a>
+        </li>
+        <li>
+        <a href="../util/desconectarse.php">Cerrar Sesion</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link disabled"></a>
         </li>
       </ul>

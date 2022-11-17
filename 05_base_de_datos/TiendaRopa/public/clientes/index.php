@@ -10,11 +10,19 @@
 </head>
 <body>
     <div class="container">
-    <?php require '../header.php' 
-    ?>
+    <?php require '../header.php'?>
+    <?php  session_start();
+            if(!isset($_SESSION["usuario"])){
+                header("location: http://localhost/05_base_de_datos/TiendaRopa/public/clientes/iniciar_sesion.php");
+            }else{
+                echo "<p> Has iniciado sesion " . $_SESSION["usuario"] . "</p>";
+            }
+            ?>
         <h1>Listado de clientes</h1>
+        <a href="../../util/desconectarse.php">Cerrar Sesion</a>
         <div class="row">
             <div class="col-9">
+                
             <a class="btn btn-primary" href="insertar_cliente.php">Nuevo cliente</a>
                 <table class=" table table-striped table-hover">
                     <thead>
