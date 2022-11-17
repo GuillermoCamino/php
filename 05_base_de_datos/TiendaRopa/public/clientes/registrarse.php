@@ -21,10 +21,11 @@
         $fecha_nacimiento=$_POST["fecha_nacimiento"];
         $contrasena=$_POST["contrasena"];
         $nombre=$_POST["nombre"];
+        $rol=$_POST["rol"];
 
         $hash_contrasena=password_hash($contrasena,PASSWORD_DEFAULT);
 
-        $sql= "INSERT INTO clientes (usuario,nombre,apellido_1,apellido_2,fecha_nacimiento,contrasena) VALUES ('$usuario','$nombre','$apellido_1',$apellido_2,'$fecha_nacimiento','$hash_contrasena')";
+        $sql= "INSERT INTO clientes (usuario,nombre,apellido_1,apellido_2,fecha_nacimiento,contrasena,rol) VALUES ('$usuario','$nombre','$apellido_1','$apellido_2','$fecha_nacimiento','$hash_contrasena','$rol')";
         if($conexion -> query($sql)=="TRUE"){
             ?>               
             <div class="alert alert-info" role="alert"><?php echo "<p>cliente insertado</p>"; ?><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
@@ -68,6 +69,14 @@
                     <div class="form-group mb-3">
                         <label class="form-label">fecha_nacimiento</label>
                         <input class="form-control" type="date" name="fecha_nacimiento">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Rol</label>
+                        <select class="form-select" name="rol">
+                        <option value="" select disabled hidden> -- selecciona un rol -- </option>
+                        <option value="administrador">Administrador</option>
+                        <option value="usuario">Usuario</option>
+                        </select>
                     </div>
                     <div class="form-group mb-3">
                         <button class="btn btn-primary" type="submit">Registrarse</button>

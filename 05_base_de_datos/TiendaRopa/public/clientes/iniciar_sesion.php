@@ -26,20 +26,21 @@
         if($resultado -> num_rows > 0){
             while($fila = $resultado -> fetch_assoc()){
                 $hash_contrasena=$fila["contrasena"];
+                $rol=$fila["rol"];
+
             }
             $acceso_valido=password_verify($contrasena,$hash_contrasena);
 
-            var_dump($acceso_valido);
             if($acceso_valido==TRUE){
                 ?><div class="alert alert-success" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><?php echo "<p>Login exitosa</p>";?></button></div><?php 
 
                 session_start();
                 $_SESSION["usuario"]=$usuario;
-                echo "hola";
+                $_SESSION["rol"]=$rol;
+
                 header("location: http://localhost/05_base_de_datos/TiendaRopa/public/index.php");
             }else{
                 ?><div class="alert alert-danger" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><?php echo "<p>Error al iniciar</p>";?></button></div><?php 
-                echo "no inicio";
 
             }
         }

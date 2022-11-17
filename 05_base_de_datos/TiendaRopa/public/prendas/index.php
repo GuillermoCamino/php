@@ -10,15 +10,9 @@
 </head>
 <body>
     <div class="container">
+    <?php  require '../../util/control_de_acceso.php' ?>
     <?php require '../header.php' ?>
-    <?php require '../../util/base_de_datos.php'; ?>
-    <?php  session_start();
-            if(!isset($_SESSION["usuario"])){
-                header("location: http://localhost/05_base_de_datos/TiendaRopa/public/clientes/iniciar_sesion.php");
-            }else{
-                echo "<p> Has iniciado sesion " . $_SESSION["usuario"] . "</p>";
-            }
-            ?>
+    <?php require '../../util/base_de_datos.php' ?>
         <h1>Listado de prendas</h1>
         <a href="../../util/desconectarse.php">Cerrar Sesion</a>
         <div class="row">

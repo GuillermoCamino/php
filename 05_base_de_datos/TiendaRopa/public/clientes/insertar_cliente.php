@@ -12,14 +12,11 @@
 
 <body>
     <?php
+    require '../../util/control_de_acceso.php';
+    require './header.php';
     require '../../util/base_de_datos.php';
 
-        session_start();
-            if(!isset($_SESSION["usuario"])){
-                header("location: http://localhost/05_base_de_datos/TiendaRopa/public/clientes/iniciar_sesion.php");
-            }else{
-                echo "<p> Has iniciado sesion " . $_SESSION["usuario"] . "</p>";
-            }
+        
 
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         $usuario=$_POST["usuario"];
