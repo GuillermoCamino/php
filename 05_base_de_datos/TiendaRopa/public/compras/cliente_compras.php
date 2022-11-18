@@ -12,7 +12,9 @@
 
 <body>
 <body>
-<?php require '../header.php' ?>
+
+    <?php require '../control_de_acceso.php' ?>
+    <?php require '../header.php' ?>
     <?php require '../../util/base_de_datos.php' ?>
 
     <?php

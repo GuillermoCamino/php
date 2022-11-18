@@ -15,7 +15,7 @@
     <?php
 
     require '../../util/base_de_datos.php';
-    require '../header.php';
+    //require '../header.php';
     if ($_SERVER["REQUEST_METHOD"]=="POST"){
         $usuario=$_POST["usuario"];
         $contrasena=$_POST["contrasena"];

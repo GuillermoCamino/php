@@ -27,7 +27,7 @@
             $sql = "SELECT * FROM clientes WHERE usuario = '$usuario'";
 
             $resultado = $conexion -> query($sql);
-            if(conexion -> num_rows>0 ){
+            if($resultado -> num_rows>0 ){
                 while($fila = $resultado -> fetch_assoc()){
                     $cliente_id=$fila["id"];
                 }

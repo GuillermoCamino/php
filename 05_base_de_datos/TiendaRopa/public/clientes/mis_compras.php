@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Mis compras</title>
 </head>
 <body>
     <?php 
@@ -22,61 +22,67 @@
      ?>
  
          <div class="row">
-             <?php
-             
-             echo "<p> " . $_SESSION["usuario"] . "</p>";
-             
+             <?php            
+                 echo "<p> " . $_SESSION["usuario"] . "</p>";          
              ?>
          </div>
  
          <a href="desconectarse.php">Cerrar Sesion</a>
-        <h1>Ver prenda</h1>
         <?php
-
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
-        $id = $_GET["id"];
-        echo "<p>$id</p>";
-
-        $sql = "SELECT * FROM prendas WHERE id = '$id'";
-
-        $resultado = $conexion -> query($sql);
-
-        if ($resultado -> num_rows > 0) {
-            while ($fila = $resultado -> fetch_assoc()) {
-                $nombre = $fila["nombre"];
-                $talla = $fila["talla"];
-                $precio = $fila["precio"];
-                $categoria = $fila["categoria"];
-                $imagen = $fila["imagen"];
-                
-            }
-        }
+        $usuario = $_SESSION["usuario"];
     }
     ?>
 
+    <div class="container">
+        <h1>Compras de <?php echo $usuario ?></h1>
 
-    <div class="row">
-        <div class="col-6">
-            <p>nombre: <?php echo $nombre?></p>
-            <p>talla: <?php echo $talla?></p>
-            <p>precio: <?php echo $precio?></p>
-            <p>categoria: <?php echo $categoria?></p>
-            <a class="btn btn-secondary" href="index.php">Volver</a>
-            <br><br>
-            <form action="editar_prenda.php" method="get">
-                <input type="hidden" name="id" value="<?php echo $id ?>" >
-                <input type="hidden" name="nombre" value="<?php echo $nombre ?>">
-                <input type="hidden" name="talla" value="<?php echo $talla ?>">
-                <input type="hidden" name="precio" value="<?php echo $precio ?>">
-                <input type="hidden" name="categoria" value="<?php echo $categoria ?>">
-                <button type="submit" class="btn btn-primary">Editar</button>
-            </form>
-        </div>
-        <div class="col-4">
-        <img width="200" height="300" src="../..<?php echo $imagen ?>">
+        <div class="row">
+            <div class="col-9">
+                <table class="table">
+                    <thead class="table table-dark">
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio unitario</th>
+                            <th>Subtotal</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $sql = "SELECT * FROM view_clientes_prendas
+                                    WHERE usuario = '$usuario'";
+                        
+                        $resultado = $conexion -> query($sql);
+                        $precio_total = 0;
+
+                        if ($resultado -> num_rows > 0) {
+                            while($fila = $resultado -> fetch_assoc()) {
+                                $producto = $fila["producto"];
+                                $cantidad = $fila["cantidad"];
+                                $precio_unitario = $fila["precio_unitario"];
+                                $fecha = $fila["fecha"];
+                                $precio_total += ($precio_unitario * $cantidad);
+                                ?>
+                                <tr>
+                                    <td><?php echo $producto ?></td>
+                                    <td><?php echo $cantidad ?></td>
+                                    <td><?php echo $precio_unitario ?></td>
+                                    <td><?php echo $precio_unitario*$cantidad ?></td>
+                                    <td><?php echo $fecha ?></td>
+                                </tr>
+                                <?php
+                            }
+                        }
+                        ?>
+                    </tbody>
+                </table>
+                <h4><span class="badge bg-success">Total: <?php echo $precio_total ?>€</span></h4>
+            </div>
         </div>
     </div>
-</div>
+    
   
 
 
