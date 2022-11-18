@@ -15,7 +15,6 @@
     <?php
 
     require '../../util/base_de_datos.php';
-    //require '../header.php';
     if ($_SERVER["REQUEST_METHOD"]=="POST"){
         $usuario=$_POST["usuario"];
         $contrasena=$_POST["contrasena"];
@@ -63,6 +62,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <button class="btn btn-primary" type="submit">Iniciar Sesion</button>
+                        <a class="btn btn-secondary" href="registrarse.php">Registrarse</a>
                     </div>
                 </form>
             </div>

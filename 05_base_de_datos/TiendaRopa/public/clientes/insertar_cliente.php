@@ -13,7 +13,7 @@
 <body>
     <?php
     require '../../util/control_de_acceso.php';
-    require './header.php';
+    require '../header.php';
     require '../../util/base_de_datos.php';
 
         
@@ -63,7 +63,6 @@
         }
     ?>
     <div class="container">
-    <?php require '../header.php' 
 
     ?>
         <h1>Nuevo Cliente</h1>

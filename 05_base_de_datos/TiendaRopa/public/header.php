@@ -16,8 +16,8 @@
 
           if ($_SESSION["rol"] == "administrador") {
         ?>
-                <a class="nav-link" href="http://localhost/05_bases_de_datos/Tiendaropa/public/prendas/insertar_prenda.php">Prendas</a>
-                <a class="nav-link" href="http://localhost/05_bases_de_datos/Tiendaropa/public/clientes/insertar_cliente.php">Clientes <span class="badge bg-success">New</span></a>
+                <a class="nav-link" href="http://localhost/05_base_de_datos/TiendaRopa/public/prendas/insertar_prenda.php">Prendas</a>
+                <a class="nav-link" href="http://localhost/05_base_de_datos/TiendaRopa/public/clientes/insertar_cliente.php">Clientes <span class="badge bg-success">New</span></a>
                 <a class="nav-link" href="http://localhost/05_bases_de_datos/Tiendaropa/public/compras/cliente_compras.php">Compras</a>
         <?php
           }
@@ -26,7 +26,7 @@
         
         <a class="nav-link" href="http://localhost/05_base_de_datos/TiendaRopa/public/compras/comprar_prenda.php">Nueva compra</a>
         <a class="nav-link" href="http://localhost/05_base_de_datos/TiendaRopa/public/clientes/mis_compras.php">Mis compras</a>
-         <a class="nav-link" href="http://localhost/05_bases_de_datos/Tiendaropa/public/desconectarse.php">Desconectarse</a> 
+         <a class="nav-link" href="http://localhost/05_base_de_datos/TiendaRopa/public/desconectarse.php">Desconectarse</a> 
         <a class="nav-link" href="">Bienvenid@ <?php echo $_SESSION["usuario"] ?></a>
       </div>
     </div>

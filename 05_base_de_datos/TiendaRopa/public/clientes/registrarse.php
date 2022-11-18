@@ -13,7 +13,6 @@
 <body>
     <?php
         require '../../util/base_de_datos.php' ;
-        require '../header.php';
         if ($_SERVER["REQUEST_METHOD"]=="POST"){
         $usuario=$_POST["usuario"];
         $apellido_1=$_POST["apellido_1"];

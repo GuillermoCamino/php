@@ -24,13 +24,13 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="../resources/images/prendas/pantalonesNike.jpg" class="d-block w-70" alt="..." width=1000 height=1000>
+      <img src="../resources/images/prendas/pantalonesNike.jpg" class="d-block w-70" alt="..." width=1000 height=800>
     </div>
     <div class="carousel-item">
-      <img src="../resources/images/prendas/camisetaHaikyuu.jpg" class="d-block w-70" alt="..." width=1000 height=1000>
+      <img src="../resources/images/prendas/camisetaHaikyuu.jpg" class="d-block w-70" alt="..." width=1000 height=800>
     </div>
     <div class="carousel-item">
-      <img src="../resources/images/prendas/camisetaUzumaki.jpg" class="d-block w-70" alt="..." width=1000 height=1000>
+      <img src="../resources/images/prendas/camisetaUzumaki.jpg" class="d-block w-70" alt="..." width=1000 height=800>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
