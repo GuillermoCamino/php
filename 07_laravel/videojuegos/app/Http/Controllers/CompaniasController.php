@@ -3,30 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Consola;
+use App\Models\Compania;
 
 
-class ConsolasController extends Controller
+class CompaniasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $consolas=Consola::all();
-        $mensaje="Esta es la lista de consolas";
-        /*$consolas=[
-            "Playstation 4",
-            "Playstation 5",
-            "Nintendo switch",
-            "XBox series X",
-
-        ];*/
-        return view('consolas/index',[
+        $companias=Compania::all();
+       
+        $mensaje="aqui tenemos una lista de compañias";
+        return view('companias/index',
+        [
             'mensaje' => $mensaje,
-            'consolas' => $consolas
+            'companias' => $companias
         ]);
     }
 
@@ -37,9 +27,7 @@ class ConsolasController extends Controller
      */
     public function create()
     {
-
-
-        return view('consolas/create');
+        return view('companias/create');
     }
 
     /**
@@ -50,14 +38,13 @@ class ConsolasController extends Controller
      */
     public function store(Request $request)
     {
-        $consola = new Consola;
-        $consola -> nombre=$request -> input('nombre');
-        $consola -> anioSalido=$request -> input('anioSalido');
-        $consola -> generacion=$request -> input('generacion');
-        $consola -> descripcion=$request -> input('descripcion');
-        $consola -> save();
+        $compania = new Compania;
+        $compania -> nombre=$request -> input('nombre');
+        $compania -> sede=$request -> input('sede');
+        $compania -> fecha_fundacion=$request -> input('fecha_fundacion');
+        $compania -> save();
 
-        return redirect('consolas');
+        return redirect('companias');
     }
 
     /**
@@ -104,4 +91,6 @@ class ConsolasController extends Controller
     {
         //
     }
+    
+
 }

@@ -7,39 +7,31 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
          
-    <title>videojuegos</title>
+    <title>Compañias</title>
 </head>
 <body>
     <div class="container">
-    <h1>index de videojuegos</h1>
+    <h1>index de compañias</h1>
+    <p>{{$mensaje}}</p>
+    <a href="{{route('companias.create') }}"class="btn btn-success">Crear compañia</a>
+    <a href="{{route('videojuegos.index') }}"class="btn btn-success">Ver juegos</a>
     <table class = "table">
         <thead>
     <tr>
-        <th>Titulo</th>
-        <th>precio</th>
-        <th>pegi</th>
-        <th>descripcion</th>
-
-
+        <th>Nombre</th>
+        <th>sede</th>
+        <th>fecha_fundacion</th>
     </tr>
     </thead>
-    <?php
-    echo "<p>$mensaje</p>";
-
-    foreach($videojuegos as $videojuegos){
-        list($titulo,$precio,$pegi, $descripcion)= $videojuegos;
-        ?>
-        <tr>
-        <td><?php echo $titulo ?></td>
-        <td><?php echo $precio ?></td>
-        <td><?php echo $pegi ?></td>
-        <td><?php echo $descripcion ?></td>
-        </tr>
-        <?php
-        echo "<br>";
-     }
     
-    ?>
+    @foreach($companias as $compania)
+    <tr>
+        <td>{{$compania->nombre}}</td>
+        <td>{{$compania->sede}}</td>
+        <td>{{$compania->fecha_fundacion}}</td>
+    </tr>
+    @endforeach
+
     </table>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Videojuego;
 
 class VideojuegosController extends Controller
 {
@@ -13,7 +14,8 @@ class VideojuegosController extends Controller
      */
     public function index()
     {
-        $mensaje="Esta es la lista de Videojuegos";
+        $videojuegos=Videojuego::all();
+        /*$mensaje="Esta es la lista de Videojuegos";
         $videojuegos=[
             ["pokemon diamante", 40, 3,"juego remaster de pokemon ds"],
             ["god of war", 70, 18,"juego que va de matar dioses"],
@@ -21,8 +23,10 @@ class VideojuegosController extends Controller
             ["League of legends ", 0, 15,"Juego que va de ser racista"],
             ["need for speed", 80, 12,"brum brum"],
             ["pokemon escarlata",60,3,"simulador de bugs pero juegazo en vd"],
-        ];
-        return view('videojuegos/index',[
+        ];*/
+        $mensaje="aqui tenemos una lista de videojuegos";
+        return view('videojuegos/index',
+        [
             'mensaje' => $mensaje,
             'videojuegos' => $videojuegos
         ]);
@@ -46,7 +50,14 @@ class VideojuegosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $videojuego = new Videojuego;
+        $videojuego -> titulo=$request -> input('titulo');
+        $videojuego -> precio=$request -> input('precio');
+        $videojuego -> pegi=$request -> input('pegi');
+        $videojuego -> descripcion=$request -> input('descripcion');
+        $videojuego -> save();
+
+        return redirect('videojuegos');
     }
 
     /**
