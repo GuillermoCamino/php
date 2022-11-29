@@ -11,6 +11,7 @@
 </head>
 <body>
     <h1>Nuevo Videojuego</h1>
+    @include('header')
  
     <?php
     /*if($_SERVER["REQUEST_METHOD"]=="POST"){

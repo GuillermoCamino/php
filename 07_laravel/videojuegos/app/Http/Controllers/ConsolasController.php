@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Consola;
-
+use DB;
 
 class ConsolasController extends Controller
 {
@@ -68,7 +68,12 @@ class ConsolasController extends Controller
      */
     public function show($id)
     {
-        //
+        $consola=Consola::find($id);
+        return view('consolas/show',
+        [
+            'consola'=>$consola
+        ]
+        );
     }
 
     /**
@@ -79,7 +84,12 @@ class ConsolasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $consola=Consola::find($id);
+        return view('consolas/edit',
+        [
+            'consola'=>$consola
+        ]
+        );
     }
 
     /**
@@ -91,7 +101,16 @@ class ConsolasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $consola = Consola::find($id);
+
+        $consola -> nombre = $request -> input('nombre');
+        $consola -> anioSalido = $request -> input('anioSalido');
+        $consola -> generacion = $request -> input('generacion');
+        $consola -> descripcion = $request -> input('descripcion');
+
+        $consola -> save();
+
+        return redirect('consolas');
     }
 
     /**
@@ -102,6 +121,8 @@ class ConsolasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('consolas')->where('id','=',$id)->delete();
+
+        return redirect('consolas');
     }
 }

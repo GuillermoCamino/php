@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Compania;
-
+use DB;
 
 class CompaniasController extends Controller
 {
@@ -55,7 +55,12 @@ class CompaniasController extends Controller
      */
     public function show($id)
     {
-        //
+        $compania=Compania::find($id);
+        return view('companias/show',
+        [
+            'compania'=>$compania
+        ]
+        );
     }
 
     /**
@@ -66,7 +71,12 @@ class CompaniasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $compania=Compania::find($id);
+        return view('companias/edit',
+        [
+            'compania'=>$compania
+        ]
+        );
     }
 
     /**
@@ -78,7 +88,15 @@ class CompaniasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $compania = Compania::find($id);
+
+        $compania -> nombre = $request -> input('nombre');
+        $compania -> sede = $request -> input('sede');
+        $compania -> fecha_fundacion = $request -> input('fecha_fundacion');
+
+        $compania -> save();
+
+        return redirect('companias');
     }
 
     /**
@@ -89,7 +107,9 @@ class CompaniasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('companias')->where('id','=',$id)->delete();
+
+        return redirect('companias');
     }
     
 

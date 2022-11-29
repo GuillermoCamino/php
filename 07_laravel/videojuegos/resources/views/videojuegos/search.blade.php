@@ -7,16 +7,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
          
-    <title>videojuegos</title>
+    <title>Buscador</title>
 </head>
 <body>
     <div class="container">
     @include('header')
 
-    <h1>index de videojuegos</h1>
-    
+    <h1>busqueda de videojuegos</h1>
     <a href="{{route('videojuegos.create') }}"class="btn btn-success">Crear videojuego</a>
-    <form action="{{route('videojuegos.search') }}" method="get">
+    <form>
         <div class="row">
             <div class="col-2">
             <label class="form-label">Buscar por titulo:</label>

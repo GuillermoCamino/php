@@ -11,16 +11,18 @@
 </head>
 <body>
     <div class="container">
+        @include('header')
     <h1>index de compañias</h1>
     <p>{{$mensaje}}</p>
     <a href="{{route('companias.create') }}"class="btn btn-success">Crear compañia</a>
-    <a href="{{route('videojuegos.index') }}"class="btn btn-success">Ver juegos</a>
     <table class = "table">
         <thead>
     <tr>
         <th>Nombre</th>
         <th>sede</th>
         <th>fecha_fundacion</th>
+        <th></th>
+        <th></th>
     </tr>
     </thead>
     
@@ -29,6 +31,18 @@
         <td>{{$compania->nombre}}</td>
         <td>{{$compania->sede}}</td>
         <td>{{$compania->fecha_fundacion}}</td>
+        <td>
+            <form method="get" action="{{route('companias.show',['compania' => $compania ->id ])}}">
+                <button class="btn btn-primary" type="submit">Ver</button>
+            </form>
+        </td>
+        <td>
+            <form method="post"action="{{route('companias.destroy',['compania'=>$compania->id])}}">
+                @csrf
+               {{method_field('DELETE')}}
+               <button class="btn btn-danger" type="submit">borrar</button>
+           </form>
+        </td>
     </tr>
     @endforeach
 

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('consolas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->double('anioSalido');
+            $table->date('anioSalido');
             $table->string('generacion');
             $table->string('descripcion');
             $table->timestamps();

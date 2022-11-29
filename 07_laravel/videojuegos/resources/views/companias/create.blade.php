@@ -10,6 +10,7 @@
     <title>Document</title>
 </head>
 <body>
+    @include('header')
 
     <form method="post" action="{{route('companias.store')}}">
         @csrf 

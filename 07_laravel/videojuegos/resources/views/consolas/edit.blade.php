@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,32 +8,28 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
      
-    <title>Nueva Consola</title>
+    <title>editar Consola</title>
 </head>
 <body>
-    @include('header')
 
-    <form method="post" action="{{route('consolas.store')}}">
-        @csrf 
+    <form method="POST" action="{{ route('consolas.update', ['consola' => $consola ->id]) }}">
+        {{method_field('PUT')}}
+        @csrf
         <div class="container">
-        <div>
+            <div class="row">
+                <div class="col-9">
             <label class="form-label">nombre</label>
-         <input class="form-control" type="text" name="nombre">
+         <input class="form-control" type="text" name="nombre"  value="{{ $consola->nombre }}">
         </div>
         <div>
             <label class="form-label">Año salida</label>
-         <input class="form-control" type="date" name="anioSalido">
-        </div>
+         <input class="form-control" type="date" name="anioSalido" value="{{ $consola->anioSalido }}">
+        
             <label class="form-label">generacion</label>
-         <input class="form-control" type="text" name="generacion">
-        </div>
-        </div>
-        <div>
-        <div>
+         <input class="form-control" type="text" name="generacion" value="{{ $consola->generacion }}">
+    
             <label class="form-label">descripcion</label>
-        <input class="form-control" type="text" name="descripcion">
-        </div>
-        </div>
+        <input class="form-control" type="text" name="descripcion" value="{{ $consola->descripcion }}">
             <button type="submit" class="btn btn-primary">Crear</button>
             <a href="{{route('consolas.index') }}"class="btn btn-success">volver</a>
             </form>

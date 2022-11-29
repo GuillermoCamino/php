@@ -11,10 +11,11 @@
 </head>
 <body>
     <div class="container">
+        @include('header')
+
     <h1>index de Consolas</h1>
     <p>{{$mensaje}}</p>
     <a href="{{route('consolas.create') }}"class="btn btn-success">Crear Consola</a>
-    <a href="{{route('videojuegos.index') }}"class="btn btn-success">Ver juegos</a>
     <table class = "table">
         <thead>
     <tr>
@@ -22,15 +23,29 @@
         <th>Año salida</th>
         <th>generacion</th>
         <th>descripcion</th>
+        <th></th>
+        <th></th>
     </tr>
     </thead>
     
     @foreach($consolas as $consola)
     <tr>
         <td>{{$consola->nombre}}</td>
-        <td>{{$consola->anioSalida}}</td>
+        <td>{{$consola->anioSalido}}</td>
         <td>{{$consola->generacion}}</td>
         <td>{{$consola->descripcion}}</td>
+        <td>
+            <form method="get" action="{{route('consolas.show',['consola' => $consola -> id ])}}">
+                <button class="btn btn-primary" type="submit">Ver</button>
+            </form>
+        </td>
+        <td>
+            <form method="post"action="{{route('consolas.destroy',['consola'=>$consola->id])}}">
+                @csrf
+               {{method_field('DELETE')}}
+               <button class="btn btn-danger" type="submit">borrar</button>
+           </form>
+        </td>
 
     </tr>
     @endforeach

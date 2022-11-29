@@ -7,36 +7,32 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
      
-    <title>Nueva Consola</title>
+    <title>Document</title>
 </head>
 <body>
-    @include('header')
+    <div class="container">
+        <h1>Editar videojuego</h1>
 
-    <form method="post" action="{{route('consolas.store')}}">
-        @csrf 
-        <div class="container">
+        <div class="row">
+            <div class="col-9">
+        <form method="POST" action="{{ route('companias.update', ['compania' => $compania ->id]) }}">
+        {{method_field('PUT')}}
+      @csrf 
         <div>
             <label class="form-label">nombre</label>
-         <input class="form-control" type="text" name="nombre">
+         <input class="form-control" type="text" name="nombre" value="{{ $compania->nombre }}">
         </div>
         <div>
-            <label class="form-label">Año salida</label>
-         <input class="form-control" type="date" name="anioSalido">
+            <label class="form-label">sede</label>
+         <input class="form-control" type="text" name="sede" value="{{ $compania->sede }}">
         </div>
-            <label class="form-label">generacion</label>
-         <input class="form-control" type="text" name="generacion">
-        </div>
-        </div>
-        <div>
-        <div>
-            <label class="form-label">descripcion</label>
-        <input class="form-control" type="text" name="descripcion">
-        </div>
-        </div>
+            <label class="form-label">fecha_fundacion</label>
+         <input class="form-control" type="date" name="fecha_fundacion" value="{{ $compania->fecha_fundacion }}">
             <button type="submit" class="btn btn-primary">Crear</button>
-            <a href="{{route('consolas.index') }}"class="btn btn-success">volver</a>
+            <a href="{{route('companias.index') }}"class="btn btn-success">volver</a>
             </form>
-        
+        </div>
+        </div>
     </div>
     
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
