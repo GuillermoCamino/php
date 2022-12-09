@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Videojuego;
+use App\Models\Compania;
 use DB;
 
 class VideojuegosController extends Controller

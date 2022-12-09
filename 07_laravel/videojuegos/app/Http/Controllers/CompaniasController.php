@@ -27,6 +27,7 @@ class CompaniasController extends Controller
      */
     public function create()
     {
+        $companias=Companias::all();
         return view('companias/create');
     }
 
